@@ -1,9 +1,35 @@
-# CST8921-Lab2_CloudSecurity
+# CST8921 – Cloud Industry Trends
+## Lab 2 – Cloud Security Trends
 
-Student Name: Jingjing Duan
-Student Number: xxxxxxxx
-Date: June 2026
+---
 
+## Introduction
+
+In this lab, students will explore and understand the criticality of cloud security in industries. A crucial component of cloud security is focused on protecting data and business content, such as customer orders, secret design documents, and financial records. Preventing leaks and data theft is critical for maintaining your customers' trust and protecting the assets that contribute to your competitive advantage. Cloud security's ability to guard your data and assets makes it crucial to any company switching to the cloud.
+
+Cloud security ensures your data and applications are readily available to authorized users. You'll always have a reliable method to access your cloud applications and information, helping you quickly act on any potential security issues.
+
+---
+
+## Objective
+
+The goal of this lab activity is to familiarize students with the concepts, techniques, and use cases of cloud security using **AWS / Azure / GCP**.
+
+---
+
+## Prerequisites
+
+- Basic understanding of cloud security concepts
+- A computer with internet access
+- Windows or Mac machine
+- Web browser
+- Cloud portal access with any cloud service provider (AWS, Azure, GCP)
+
+---
+
+## Lab Activity Overview
+
+---
 
 ### Task 1: Create an Azure Policy – Allowed Locations
 
@@ -13,30 +39,18 @@ Date: June 2026
 1. Sign in to the **Azure Portal**
 2. Search for **Policy**
 3. Select **Definitions**
-
-![alt text](images/T1-1.png)
-
-
 4. Search for the built-in policy: `Allowed locations`
 5. Select the policy → Click **Assign**
-
-![alt text](images/T1-2.png)
-
 6. Configure:
    - **Scope:** Subscription
    - **Allowed locations:** Canada Central
 7. Click **Review + Create**
 
-![alt text](images/T1-3.png)
-![alt text](images/T1-4.png)
-
-
 **Validation:**
-- Attempt to create a storeage avccout in a different region (East US2)
+- Attempt to create a resource in a different region (e.g., East US)
 - Confirm deployment fails
 
-![alt text](images/T1-5.png)
-
+---
 
 ### Task 2: Create a Virtual Network (Canada Central)
 
@@ -50,9 +64,6 @@ Date: June 2026
    - **Address space:** `10.0.0.0/16`
 4. Do not add subnets yet
 5. Click **Review + Create**
-
-![alt text](images/T2-1.png)
-![alt text](images/T2-2.png)
 
 ---
 
@@ -73,12 +84,7 @@ Date: June 2026
 3. Add `private-subnet`:
    - Enable **Service Endpoint**
    - Service: `Microsoft.Storage`
-
-![alt text](images/T3-1.png)
-
 4. Add `public-subnet` (no service endpoint)
-
-![alt text](images/T3-2.png)
 
 ---
 
@@ -90,10 +96,6 @@ Date: June 2026
 1. Search for **Network Security Groups**
 2. Create NSG in **Canada Central**
 3. Associate NSG to `private-subnet`
-
-![alt text](images/T4-1.png)
-
-![alt text](images/T4-2.png)
 
 ---
 
@@ -108,8 +110,6 @@ Date: June 2026
 | Action        | Allow           |
 | Priority      | 100             |
 
-![alt text](images/T5-1.png)
-
 **Outbound Rule – Deny Internet Access**
 
 | Setting       | Value           |
@@ -117,8 +117,6 @@ Date: June 2026
 | Destination   | Internet        |
 | Action        | Deny            |
 | Priority      | 200             |
-
-![alt text](images/T5-2.png)
 
 ---
 
@@ -131,10 +129,6 @@ Date: June 2026
 | Source    | Any    |
 | Port      | 3389   |
 | Protocol  | TCP    |
-
-![alt text](images/T6-1.png)
-
-![alt text](images/T6-2.png)
 
 ---
 
@@ -151,10 +145,6 @@ Date: June 2026
    - Allow access only from `private-subnet`
 4. Create an **Azure File Share**
 
-![alt text](images/T7-1.png)
-![alt text](images/T7-2.png)
-![alt text](images/T7-3.png)
-
 ---
 
 ### Task 8: Deploy Virtual Machines
@@ -168,9 +158,8 @@ Deploy two Windows VMs:
 
 - Enable **Azure Bastion**
 - Use the **same credentials** for both VMs
-  
-![alt text](images/T8-1.png)
-![alt text](images/T8-2.png)
+
+> 📸 **Screenshot required:** VM overview pages
 
 ---
 
@@ -202,7 +191,7 @@ New-PSDrive @map
 
 **Expected Result:** Azure file share successfully mapped to drive `Z:`
 
-![alt text](images/T9-1.png)
+---
 
 ### Task 10: Test Storage Access from Public Subnet (Denied)
 
@@ -211,12 +200,45 @@ New-PSDrive @map
 
 **Expected Result:** Access denied error
 
-![alt text](images/T10-1.png)
+---
+
+## Validation Summary
+
+| Scenario                                  | Expected Outcome |
+|-------------------------------------------|------------------|
+| Resource creation outside Canada Central  | Blocked          |
+| Storage access from private subnet        | Allowed          |
+| Storage access from public subnet         | Denied           |
 
 ---
 
 ## Cleanup (Mandatory)
 
-![alt text](images/T11.png)
+> ⚠️ To avoid unexpected costs, delete all resources after completing the lab.
 
+Delete the following:
+- Virtual Machines
+- Storage Account
+- Network Security Groups (NSGs)
+- Virtual Network
+- Azure Policy assignment
 
+---
+
+## Deliverables & Grading
+
+### Lab Report Requirements
+- Step-by-step explanation of each task
+- Screenshots for each task
+- Security analysis and observations
+- Validation results
+- Cleanup confirmation
+
+### Submission
+- Upload your report to **Brightspace → Assignments**
+
+---
+
+## Important Notes
+
+> For grading, prepare a lab report with your findings and analysis and submit it via the **Assignments** tab in Brightspace.
