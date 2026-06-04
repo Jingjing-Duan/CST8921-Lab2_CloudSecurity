@@ -1,8 +1,8 @@
 # CST8921-Lab2_CloudSecurity
 
-Student Name: Jingjing Duan
-Student Number: xxxxxxxx
-Date: June 2026
+- Student Name: Jingjing Duan
+- Student Number: 041159829
+- Date: June 2026
 
 
 ### Task 1: Create an Azure Policy – Allowed Locations
@@ -215,8 +215,39 @@ New-PSDrive @map
 
 ---
 
+## Security Analysis and observations
+
+This lab demonstrated several important Azure security features, including Azure Policy, Virtual Networks, Network Security Groups (NSGs), and Storage Account access control.
+
+An Azure Policy was used to restrict resource deployment to the Canada Central region. This helps organizations ensure that resources are created only in approved locations and supports compliance requirements.
+
+A Virtual Network was created with two subnets: private-subnet and public-subnet. Separating resources into different subnets improves security by limiting network access between resources.
+
+Network Security Groups were configured to control network traffic. The private subnet was allowed to access Azure Storage services while Internet access was restricted. The public subnet was configured to allow RDP access for management and testing purposes.
+
+The Storage Account was configured to allow access only from the private-subnet. During testing, the virtual machine in the private subnet successfully accessed the Azure File Share, while the virtual machine in the public subnet was unable to connect.
+
+The results confirmed that the network security controls worked as expected. By combining Azure Policy, subnet isolation, NSGs, and Storage Account networking rules, access to cloud resources was effectively controlled and protected.
+
+
+---
+
+## Validation Summary
+
+| Scenario                                  | Expected Outcome |
+|-------------------------------------------|------------------|
+| Resource creation outside Canada Central  | Blocked          |
+| Storage access from private subnet        | Allowed          |
+| Storage access from public subnet         | Denied           |
+
+---
+
 ## Cleanup (Mandatory)
 
 ![alt text](images/T11.png)
+
+---
+
+
 
 
